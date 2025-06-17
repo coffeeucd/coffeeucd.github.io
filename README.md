@@ -1,1 +1,1 @@
-# ECS36A
+# COFFEE UCD Website
