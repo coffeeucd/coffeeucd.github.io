@@ -57,10 +57,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section style={{ padding: "2rem 0" }}>
+        <section style={{ padding: "2rem 0", background: "white" }}>
           <h2 style={{ textAlign: "left", paddingLeft: "2.5rem", fontSize: "1.2rem", fontWeight: 600 }}>
             What We Do
-            <span style={{ color: "#888", fontWeight: 400, fontSize: "1rem", marginLeft: 10 }}>
+            <br></br>
+            <span style={{ color: "#888", fontWeight: 400, fontSize: "1rem" }}>
               Community + Fun + More
             </span>
           </h2>
@@ -70,7 +71,7 @@ export default function Home() {
             gap: "2rem",
             padding: "2rem 2.5rem"
           }}>
-            {[0, 1, 2, 3].map(i => (
+            {[0, 1, 2, 3, 4, 5].map(i => (
               <div key={i} style={{
                 background: "#EAEAEA",
                 height: 160,
