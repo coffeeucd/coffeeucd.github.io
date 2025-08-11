@@ -1,4 +1,6 @@
 import React from "react";
+import logoCoffee from '../assets/logo-coffee.png';
+import Carousel from "../components/Carousel"; 
 
 const socialLinks = [
   { href: "https://instagram.com", icon: "📸", label: "Instagram" },
@@ -13,16 +15,13 @@ const menuLinks = [
   "About",
 ];
 
-
-
-
-
 export default function Home() {
   return (
     <div style={{ background: "#F6F6F7", minHeight: "100vh", fontFamily: "sans-serif" }}>
       <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1rem 2rem", background: "#fff" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img src="/logo-coffee.png" alt="COFFEE logo" style={{ height: 36, marginRight: 12 }} />
+<img src={logoCoffee} style={{ height: 42, marginRight: 12 }} />
+        
         </div>
         <nav>
           {menuLinks.map(link => (
@@ -30,10 +29,10 @@ export default function Home() {
           ))}
         </nav>
       </header>
-      <main style={{ background: "#F6F6F7", minHeight: "80vh" }}>
-        <section style={{ textAlign: "center", padding: "4rem 1rem 2.5rem 1rem" }}>
+      <main style={{ background: "#6e5a51", minHeight: "50vh" }}>
+        <section style={{ textAlign: "center", padding: "8rem 1rem 5rem 1rem" }}>
           <h1 style={{ fontSize: "2.6rem", letterSpacing: "0.1em", fontWeight: 700, margin: 0 }}>C.O.F.F.E.E.</h1>
-          <p style={{ fontSize: "1.3rem", margin: "1rem 0 2rem" }}>Club for Future Femme Electrical Engineers</p>
+          <p style={{ fontSize: "1.3rem", margin: "1rem 0 2rem" }}>Club Of Female & Femme Electrical Engineers</p>
           <div>
             <button style={{
               background: "#fff",
@@ -57,11 +56,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section style={{ padding: "2rem 0", background: "white" }}>
+        {/* <section style={{ padding: "2rem 0", background: "#a18477" }}>
           <h2 style={{ textAlign: "left", paddingLeft: "2.5rem", fontSize: "1.2rem", fontWeight: 600 }}>
             What We Do
             <br></br>
-            <span style={{ color: "#888", fontWeight: 400, fontSize: "1rem" }}>
+            <span style={{ color: "#424242", fontWeight: 400, fontSize: "1rem" }}>
               Community + Fun + More
             </span>
           </h2>
@@ -104,16 +103,27 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </section> */}
+          <section style={{ padding: "2rem 0", background: "white" }}>
+          <h2 style={{ textAlign: "left", paddingLeft: "2.5rem", fontSize: "1.2rem", fontWeight: 600 }}>
+            What We Do
+            <br />
+            <span style={{ color: "#888", fontWeight: 400, fontSize: "1rem" }}>
+              Community + Fun + More
+            </span>
+          </h2>
+          <div style={{ padding: "2rem 0" }}>
+            <Carousel /> {/* ✅ Carousel integrated here */}
+          </div>
         </section>
       </main>
 
       <footer style={{
-        background: "#fff",
+        background: "rgb(246,246,247)",
         padding: "2.5rem 2rem 2rem",
-        marginTop: "2rem"
       }}>
         <div style={{ display: "flex", alignItems: "center", marginBottom: "1.2rem" }}>
-          <img src="/logo-coffee.png" alt="COFFEE logo" style={{ height: 32, marginRight: "1rem" }} />
+          <img src={logoCoffee} style={{ height: 42, marginRight: "1rem" }} />
           <div>
             {socialLinks.map(link => (
               <a key={link.label} href={link.href} style={{ marginRight: 12, color: "#566" }} aria-label={link.label}>{link.icon}</a>
