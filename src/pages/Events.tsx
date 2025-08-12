@@ -50,30 +50,27 @@ function Events() {
   const currentEvent = events[currentEventIndex]
 
   return (
-    <div>
-    <h1 className="bg-red-500 text-white text-4xl p-8 text-center">DO YOU SEE THIS?</h1>
+    <div className="w-full bg-stone-300 py-16">
     <div className="min-h-screen">
       {/* Hero Banner Section */}
-      <div className="w-full bg-amber-100 py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold text-black mb-4">Events</h1>
-            <p className="text-xl text-gray-600">Your Subtitle Here</p>
-          </div>
+      <div className="w-full py-20 px-4">
+        <div className="bg-stone-500 py-20 rounded-xl text-center">
+          <h1 className="text-6xl font-bold text-black mb-4">Events</h1>
+          <p className="text-xl text-stone-200">Your Subtitle Here</p>
         </div>
       </div>
 
       {/* Carousel Section */}
-      <div className="w-full bg-gray-100 py-16">
+      <div className="w-full bg-stone-100 py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Event Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-brown-400 rounded-xl shadow-lg p-6">
               {/* Event Content */}
               <div className="text-center">
                 {/* Date */}
                 <div className="mb-6">
-                  <div className="inline-block bg-gray-100 rounded-lg px-6 py-3 shadow-sm">
+                  <div className="inline-block bg-gray-100 rounded-lg px-6 py-3 shadow-lg">
                     <span className="text-2xl font-semibold text-gray-700">
                       {currentEvent.month} {currentEvent.date}
                     </span>
@@ -89,8 +86,8 @@ function Events() {
 
                 {/* Event Title */}
                 <div className="mb-6">
-                  <div className="inline-block bg-blue-50 rounded-lg px-8 py-4 shadow-sm">
-                    <h2 className="text-3xl font-bold text-black">
+                  <div className="inline-block bg-gray-50 rounded-lg px-8 py-4 shadow-sm">
+                    <h2 className="text-2xl font-bold text-stone-800">
                       {currentEvent.title}
                     </h2>
                   </div>
@@ -108,7 +105,7 @@ function Events() {
               <div className="flex justify-center items-center mt-8 space-x-4">
                 <button
                   onClick={previousEvent}
-                  className="px-6 py-2 bg-gray-800 text-black rounded-lg hover:bg-gray-700 transition-colors duration-200 font-medium shadow-md"
+                  className="px-6 py-2 bg-stone-800 text-white rounded-lg hover:bg-stone-700 transition-colors duration-200 font-medium shadow-md"
                 >
                   Previous
                 </button>
@@ -119,7 +116,7 @@ function Events() {
                 </div>
                 <button
                   onClick={nextEvent}
-                  className="px-6 py-2 bg-gray-800 text-black rounded-lg hover:bg-gray-700 transition-colors duration-200 font-medium shadow-md"
+                  className="px-6 py-2 bg-stone-800 text-white rounded-lg hover:bg-stone-700 transition-colors duration-200 font-medium shadow-md"
                 >
                   Next
                 </button>
