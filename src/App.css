@@ -1,3 +1,39 @@
+/* At very top of src/app.css or src/index.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap');
+
+
+.glow {
+  text-shadow:
+    0 0 6px rgba(255,255,255,.55),
+    0 0 14px rgba(255,255,255,.35),
+    0 0 28px rgba(255,255,255,.2);
+  animation: glow-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(255,255,255,.55),
+      0 0 14px rgba(255,255,255,.35),
+      0 0 28px rgba(255,255,255,.2);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(255,255,255,.85),
+      0 0 22px rgba(255,255,255,.6),
+      0 0 40px rgba(255,255,255,.35);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow { animation: none; }
+}
+
+html, body {
+  font-family: 'Outfit', sans-serif;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +75,31 @@
 
 .read-the-docs {
   color: #888;
+}/* soft pulsing glow for light text on dark bg */
+
+.gradient-glow {
+  background: linear-gradient(90deg, #8b5e3c, #5a3625);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(139, 94, 60, 0.6),
+    0 0 20px rgba(139, 94, 60, 0.4),
+    0 0 40px rgba(90, 54, 37, 0.3);
+  animation: gradient-glow-pulse 2.2s ease-in-out infinite;
 }
+
+@keyframes gradient-glow-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 8px rgba(139, 94, 60, 0.6),
+      0 0 20px rgba(139, 94, 60, 0.4),
+      0 0 40px rgba(90, 54, 37, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(139, 94, 60, 0.8),
+      0 0 30px rgba(139, 94, 60, 0.6),
+      0 0 60px rgba(90, 54, 37, 0.4);
+  }
+}
+

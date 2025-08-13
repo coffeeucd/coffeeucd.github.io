@@ -7,3 +7,7 @@
     @apply text-black no-underline;
   }
 }
+
+/* index.css or App.css */
+
+html { scroll-behavior: smooth; }

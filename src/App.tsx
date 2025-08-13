@@ -1,26 +1,19 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Events from './pages/Events'
-import Navbar from './components/Navbar'
-//import Contact from './pages/Contact'
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; // HashRouter is safest on GitHub Pages
+import Home from "./pages/Home";
+//import Mentorship from "./pages/Mentorship";
+import Events from "./pages/Events";
+//import Officers from "./pages/Officers";
+import About from "./pages/About";
 
-function App() {
+export default function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow px-4 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/events" element={<Events />} />
-          </Routes>
-        </main>
-        {/* You can add Footer here */}
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
     </Router>
-  )
+  );
 }
-
-export default App
