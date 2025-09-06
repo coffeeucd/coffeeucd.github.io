@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './App.css';
 
 function Events() {
   // Sample event data
@@ -50,6 +51,7 @@ function Events() {
   const currentEvent = events[currentEventIndex]
 
   return (
+    <div className="font-dm-serif-text">
     <div className="w-full bg-stone-300 py-16">
     <div className="min-h-screen">
       {/* Hero Banner Section */}
@@ -125,6 +127,7 @@ function Events() {
           </div>
         </div>
       </div>
+    </div>
     </div>
     </div>
   )
