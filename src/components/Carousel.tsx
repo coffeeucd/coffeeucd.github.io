@@ -24,7 +24,7 @@ export default function Carousel() {
   // Slides visible based on window size
   useEffect(() => {
     const updateCount = () => {
-      const w = window.innerWidth;
+      //const w = window.innerWidth;
       setVisibleCount(1);
     };
     updateCount();
