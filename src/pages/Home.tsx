@@ -92,7 +92,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <p style={{color:"rgba(133, 100, 39, 1)"}}>Made with ❤︎ by COFFEE Developer Team, 2025</p>
+        <p style={{color:"rgba(133, 100, 39, 1)"}}>Made with ❤︎ by COFFEE Developer Team, 2025: Nancy, Ananya, Sherry, Aishwari, and Kavi</p>
       </footer>
     </div>
   );

@@ -14,21 +14,18 @@ const originalImages = [img1, img2, img3, img4, img5, img6];
  * HEIGHT: responsive height (use clamp to scale nicely with viewport width)
  */
 const MAX_WIDTH = "70%";
-const HEIGHT = "clamp(500px, 50vw, 500px)"; // smaller←→bigger
+ const HEIGHT = "clamp(200px, 50vw, 500px)"; // smaller←→bigger
 //const HEIGHT = "500px"; // fixed height for simplicity
 export default function Carousel() {
   const [visibleCount, setVisibleCount] = useState(3);
   const [current, setCurrent] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
-
+  
   // Slides visible based on window size
   useEffect(() => {
     const updateCount = () => {
-      const w = window.innerWidth;
-      if (w < 640) setVisibleCount(1);
-      else if (w < 1024) setVisibleCount(2);
-      else if (w < 1280) setVisibleCount(3);
-      else setVisibleCount(4);
+      //const w = window.innerWidth;
+      setVisibleCount(1);
     };
     updateCount();
     window.addEventListener("resize", updateCount);
@@ -91,6 +88,7 @@ export default function Carousel() {
       style={{
         maxWidth: MAX_WIDTH,
         margin: "0 auto",
+        
         //padding: "-1rem 0",
       }}
     >
@@ -98,7 +96,7 @@ export default function Carousel() {
         style={{
           position: "relative",
           width: "100%",
-          height: HEIGHT,      // << controls carousel height
+         height: HEIGHT,      // << controls carousel height
           overflow: "hidden",
           borderRadius: `0`,
         }}
@@ -110,7 +108,6 @@ export default function Carousel() {
             height: "100%",
             transition: transitionEnabled ? "transform 0.5s ease" : "none",
             transform: `translateX(-${current * (100 / visibleCount)}%)`,
-            width: `${(totalSlides / visibleCount) * 100}%`,
           }}
         >
           {slides.map((src, idx) => (
@@ -121,6 +118,8 @@ export default function Carousel() {
                 height: "100%",
                 padding: "0 0px",
                 boxSizing: "border-box", // padding stays inside the % width
+                width: "100%",
+                maxWidth: "100%",
               }}
             >
               <img
@@ -135,6 +134,7 @@ export default function Carousel() {
                   display: "block",
                 }}
               />
+
             </div>
           ))}
         </div>
