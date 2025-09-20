@@ -64,8 +64,17 @@ function Events() {
             <div className="bg-[#5a3625] py-8 text-center">
               <h1 className="text-6xl font-bold text-white mb-4">Events</h1>
               <p className="text-xl text-white">2024-2025</p>
+              
             </div>
           </div>
+          <div><h3 style={{ color: "#6d351bff", fontSize: "20px"}}> COFFEE organizes a variety of events each quarter to inspire and support women in ECE. 
+                We partner with numerous companies to offer industry immersion events and information sessions, 
+                helping our members advance their careers. We also invite speakers—women and allies who have built careers in ECE—to share their experiences and engage with our audience, 
+                encouraging insightful discussions and networking opportunities.
+              </h3>
+              <br />
+              <h3 className="font-semibold" style={{color:"#0f0601ff", fontSize: "18px" }}>If you are interested in partnering with us for an event, please reach out via email (coffeeucd@gmail.com). We welcome opportunities that contribute to our members' growth!</h3>
+              </div>
 
           {/* Carousel Section */}
           <div className="w-full py-16">
