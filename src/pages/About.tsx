@@ -23,6 +23,18 @@ const people1 = [
   { img: img9, position: "Co-Publicist", name: "Hania A.", major: "Electrical Engineering" },
   { img: img10, position: "Co-Publicist", name: "Kavi R.", major: "Computer Science & Engineering" },
 ];
+
+
+import logoCoffee from "../assets/logo-coffee.png";
+
+
+// socials (fine)
+const socialLinks = [
+  { href: "https://www.instagram.com/coffee_ucd/", icon: "Instagram[◉°]", label: "Instagram" },
+  //{ href: "https://youtube.com", icon: "▶️", label: "YouTube" },
+  { href: "https://linkedin.com", icon: "LinkedIn🔗", label: "LinkedIn" },
+];
+
 function About() {
   return (
     <>
@@ -120,6 +132,20 @@ function About() {
           </div>
         ))}
       </div>
+
+      <footer style={{ background: "rgb(246,246,247)", padding: "2.5rem 2rem 2rem", marginTop: 50 }}>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "1.2rem" }}>
+          <img src={logoCoffee} alt="COFFEE small" style={{ height: 42, marginRight: "1rem" }} />
+          <div>
+            {socialLinks.map(({ href, icon, label }) => (
+              <a key={label} href={href} style={{ marginRight: 12, color: "#566" }} aria-label={label} target="_blank" rel="noreferrer">
+                {icon}
+              </a>
+            ))}
+          </div>
+        </div>
+        <p style={{color:"rgba(133, 100, 39, 1)"}}>Made with ❤︎ by COFFEE Developer Team, 2025: Nancy, Ananya, Sherry, Aishwari, and Kavi</p>
+      </footer>
     </>
   )
 }
