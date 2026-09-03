@@ -1,174 +1,258 @@
-import { useState } from "react";
-import logoCoffee from "../assets/logo-coffee.png";
+import React, { useMemo, useState } from "react";
+import "../pages/Events.css";
 
-const socialLinks = [
-  { href: "https://www.instagram.com/coffee_ucd/", icon: "Instagram[◉°]", label: "Instagram" },
-  { href: "https://linkedin.com", icon: "LinkedIn🔗", label: "LinkedIn" },
+type EventItem = {
+  id: string;
+  title: string;
+  dateISO: string; // ISO date for sorting/filtering
+  time?: string;
+  location?: string;
+  description?: string;
+  image?: string;
+  rsvpLink?: string;
+};
+
+const EVENTS: EventItem[] = [
+  {
+    id: "e1",
+    title: "Solidigm Info and Recruitment Session",
+    dateISO: "2026-01-22",
+    time: "7:00 PM – 9:00 PM",
+    location: "Kemper 1131",
+    description:
+      "Come learn about Solidigm's technologies and opportunities, and network with industry professionals!",
+    image: "/assets/event1.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e2",
+    title: "Fusion PCB Design Workshop",
+    dateISO: "2026-02-06",
+    time: "12:00 PM – 3:00 PM",
+    location: "Kemper 1127",
+    description:
+      "Learn how to design your own PCB using Fusion 360. Open to all skill levels.",
+    image: "/assets/event2.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e3",
+    title: "Marvell Information Session",
+    dateISO: "2025-10-16",
+    time: "7:00 PM – 9:00 PM",
+    location: "Kemper 1127",
+    description: "Network with Marvell engineers and learn about their technologies and career opportunities.",
+    image: "/assets/event3.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e4",
+    title: "Mock Interview Prep",
+    dateISO: "2026-04-20",
+    time: "7:00 PM – 9:00 PM",
+    location: "Kemper 1127",
+    description: "Prepare for your next interview with our mock interview session.",
+    image: "/assets/event4.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e5",
+    title: "Keysight Technologies Info Session",
+    dateISO: "2026-02-11",
+    time: "6:00 PM – 8:00 PM",
+    location: "Kemper 1127",
+    description: "Learn about Keysight Technologies and their career opportunities in the tech industry.",
+    image: "/assets/event5.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e6",
+    title: "Spring Quarter Mentorship Meeting",
+    dateISO: "2026-05-04",
+    time: "6:00 PM – 8:00 PM",
+    location: "Kemper 1127",
+    description: "Join us for our Spring Quarter mentorship meeting to connect with mentors and mentees.",
+    image: "/assets/event6.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e7",
+    title: "Study Hours",
+    dateISO: "2026-04-27",
+    time: "7:00 PM – 9:00 PM",
+    location: "Kemper 1127",
+    description: "Join us for study hours to work on your projects and assignments with fellow students.",
+    image: "/assets/event7.jpg",
+    rsvpLink: "#",
+  },
+  {
+    id: "e8",
+    title: "Student Intern Panel",
+    dateISO: "2026-03-15",
+    time: "6:00 PM – 8:00 PM",
+    location: "123 Khaira Hall",
+    description: "Hear from students who have interned at top companies and learn about their experiences and advice.",
+    image: "/assets/event8.jpg",
+    rsvpLink: "#",
+  }
+  // ...add more events here or import dynamically...
 ];
 
-function Events() {
-  const events = [
-    { id: 1, month: "JANUARY", date: "15", title: "Fireside Chat with Women in Semiconductors", image: "/images/img1.png" },
-    { id: 2, month: "FEBRUARY", date: "8", title: "Women in AI Panel", image: "/images/img2.png" },
-    {id: 2, month: "FEBRUARY", date: "22", title: "Galentines with COFFEE, WSS, OWN IT, & SWE"},
-    { id: 3, month: "MARCH", date: "22", title: "Peer Internship Panel", image: "/images/img3.png" },
-    { id: 4, month: "APRIL", date: "12", title: "COFFEE and Women in Engineering Conference @ SJSU", image: "/images/img4.png" },
-    { id: 4, month: "APRIL", date: "26", title: "Career Prep with COFFEE"},
-    { id: 5, month: "MAY", date: "5", title: "E-Craft Week", image: "/images/img5.png" },
-    { id: 6, month: "JUNE", date: "20", title: "Professor Islam Lab Tour", image: "/images/img6.png" },
-    { id: 10, month: "OCTOBER", date: "16", title: "Marvell Technologies Information Session" },
-    { id: 10, month: "OCTOBER", date: "14", title: "Texas Instruments Information Session" },
-    { id: 10, month: "OCTOBER", date: "09", title: "The Hiring Games: Career Fair Preparation" },
-    { id: 11, month: "NOVEMBER", date: "06", title: "Grad Panel" },
-  ];
+function formatDate(iso: string) {
+  const d = new Date(iso);
+  return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+}
 
-  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+export default function Events() {
+  const [query, setQuery] = useState("");
+  const [filterMonth, setFilterMonth] = useState<string>("all");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  const [selected, setSelected] = useState<EventItem | null>(null);
 
-  const nextEvent = () => {
-    setCurrentEventIndex((prevIndex) => (prevIndex === events.length - 1 ? 0 : prevIndex + 1));
-  };
+  const months = useMemo(() => {
+    const setM = new Set(EVENTS.map((e) => new Date(e.dateISO).getMonth()));
+    return Array.from(setM).sort().map((m) =>
+      new Date(2020, m, 1).toLocaleString(undefined, { month: "short" })
+    );
+  }, []);
 
-  const previousEvent = () => {
-    setCurrentEventIndex((prevIndex) => (prevIndex === 0 ? events.length - 1 : prevIndex - 1));
-  };
+  const visible = useMemo(() => {
+    return EVENTS.filter((e) => {
+      const matchesQuery =
+        !query ||
+        e.title.toLowerCase().includes(query.toLowerCase()) ||
+        (e.description && e.description.toLowerCase().includes(query.toLowerCase())) ||
+        (e.location && e.location.toLowerCase().includes(query.toLowerCase()));
+      const matchesMonth = filterMonth === "all" ? true : new Date(e.dateISO).toLocaleString(undefined, { month: "short" }) === filterMonth;
+      return matchesQuery && matchesMonth;
+    }).sort((a, b) => (sortDir === "asc" ? +new Date(a.dateISO) - +new Date(b.dateISO) : +new Date(b.dateISO) - +new Date(a.dateISO)));
+  }, [query, filterMonth, sortDir]);
 
-  const currentEvent = events[currentEventIndex];
+  // start of today at local midnight (used to split past vs upcoming)
+  const startOfToday = useMemo(() => {
+    const t = new Date();
+    return new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  }, []);
+
+  const upcoming = useMemo(() => visible.filter((e) => new Date(e.dateISO) >= startOfToday), [visible, startOfToday]);
+  const past = useMemo(() => visible.filter((e) => new Date(e.dateISO) < startOfToday), [visible, startOfToday]);
+
+  const renderEvent = (ev: EventItem) => (
+    <article key={ev.id} className="eventCard" onClick={() => setSelected(ev)} tabIndex={0} role="button" aria-label={`Open ${ev.title}`}>
+      <div className="eventCard__media">
+        {ev.image ? <img src={ev.image} alt={ev.title} /> : <div className="eventCard__placeholder">No image</div>}
+      </div>
+
+      <div className="eventCard__body">
+        <div className="eventCard__meta">
+          <time className="eventCard__date">{formatDate(ev.dateISO)}</time>
+          {ev.time && <span className="eventCard__time">{ev.time}</span>}
+        </div>
+
+        <h3 className="eventCard__title">{ev.title}</h3>
+        <p className="eventCard__location">{ev.location}</p>
+        <p className="eventCard__excerpt">{ev.description}</p>
+
+        <div className="eventCard__actions">
+          <button className="btn" onClick={(e) => { e.stopPropagation(); setSelected(ev); }}>
+            Learn more
+          </button>
+        </div>
+      </div>
+    </article>
+  );
 
   return (
-    <div className="font-dm-serif-text">
-      <div className="w-full py-4">
-        <div className="min-h-screen">
-          {/* Back to Home button */}
-          <div className="w-full">
-            <div className="max-w-6xl mx-auto px-4 py-0">
-              <a
-                href="/"
-                className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-white shadow-md transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                style={{ backgroundColor: "#ba7657ff" }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-                Back to Home
-              </a>
-            </div>
-          </div>
+    <section className="eventsPage">
+      <div className="eventsHero">
+        <div className="eventsHero__inner">
+          {/* logo removed to keep the brown banner clean */}
+          <h1 className="eventsHero__title">EVENTS</h1>
+          <p className="eventsHero__subtitle">Workshops, socials, and hands-on sessions to grow skills & community</p>
+        </div>
+      </div>
 
-          {/* Hero Banner Section */}
-          <div className="w-full py-10 px-5">
-            <div className="bg-[#5a3625] py-8 text-center">
-              <h1 className="text-6xl font-bold text-white mb-4">Events</h1>
-              <p className="text-xl text-white">2024-2025</p>
-            </div>
-          </div>
-          <div>
-            <h3 style={{ color: "#6d351bff", fontSize: "20px"}}>
-              COFFEE organizes a variety of events each quarter to inspire and support women in ECE.
-              We partner with numerous companies to offer industry immersion events and information sessions,
-              helping our members advance their careers. We also invite speakers—women and allies who have built careers in ECE—to share their experiences and engage with our audience,
-              encouraging insightful discussions and networking opportunities.
-            </h3>
-            <br />
-            <h3 className="font-semibold" style={{color:"#0f0601ff", fontSize: "18px" }}>
-              If you are interested in partnering with us for an event, please reach out via email (coffeeucd@gmail.com). We welcome opportunities that contribute to our members' growth!
-            </h3>
-          </div>
+      <div className="eventsToolbar container">
+        <div className="searchGroup">
+          <input
+            aria-label="Search events"
+            placeholder="Search events, location, or description..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="searchInput"
+          />
+        </div>
 
-          {/* Carousel and Year-at-a-Glance Section */}
-          <div className="w-full py-16">
-            <div className="container mx-auto px-4">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {/* Event Card */}
-                <div className="rounded-xl shadow-lg p-6" style={{ backgroundColor: "#805d4cff" }}>
-                  <div className="text-center">
-                    <div className="mb-6">
-                      <span className="text-2xl font-semibold" style={{ color: "#fbfafaff" }}>
-                        {currentEvent.month} {currentEvent.date}
-                      </span>
-                    </div>
-                    <div className="mb-6">
-                      <div className="w-64 h-48 mx-auto rounded-xl shadow-md flex items-center justify-center" style={{ backgroundColor: "#D9B7A8" }}>
-                        <img src={currentEvent.image} alt={currentEvent.title} className="w-full h-full object-cover rounded-xl" />
-                      </div>
-                    </div>
-                    <div className="mb-6">
-                      <div className="inline-block rounded-lg px-8 py-4 shadow-sm border bg-white" style={{ borderColor: "#E7D5CB" }}>
-                        <h2 className="text-2xl font-bold" style={{ color: "#411b09ff" }}>
-                          {currentEvent.title}
-                        </h2>
-                      </div>
-                    </div>
-                    <div className="flex justify-center items-center mt-8 space-x-4">
-                      <button
-                        onClick={previousEvent}
-                        className="px-6 py-2 rounded-lg font-medium shadow-md transition-colors duration-200 text-white"
-                        style={{ backgroundColor: "#4A2E22" }}
-                        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#3D251B")}
-                        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#4A2E22")}
-                      >
-                        Previous
-                      </button>
-                      <div className="rounded-lg px-4 py-2 shadow-sm" style={{ backgroundColor: "#F7EFEA" }}>
-                        <span className="font-medium" style={{ color: "#30170cff" }}>
-                          {currentEventIndex + 1} of {events.length}
-                        </span>
-                      </div>
-                      <button
-                        onClick={nextEvent}
-                        className="px-6 py-2 rounded-lg font-medium shadow-md transition-colors duration-200 text-white"
-                        style={{ backgroundColor: "#4A2E22" }}
-                        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#3D251B")}
-                        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#4A2E22")}
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </div>
-                </div>
+        <div className="filters">
+          <select value={filterMonth} onChange={(e) => setFilterMonth(e.target.value)} className="select">
+            <option value="all">All months</option>
+            {months.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
 
-                {/* Year at a Glance */}
-                <div className="lg:col-span-2 rounded-xl border bg-white p-6 shadow-md">
-                  <h3 className="text-xl font-bold mb-4" style={{ color: "#6d351b" }}>2024-2025 Events</h3>
-                  <ol className="space-y-3">
-                    {events.map((ev, i) => (
-                      <li key={ev.id} className="flex items-start gap-3">
-                        <div className={`mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full ${i === currentEventIndex ? "bg-[#ba7657]" : "bg-amber-400"}`} />
-                        <div className="grid grid-cols-[auto,1fr] gap-4 items-baseline w-full">
-                          <p className="text-xs text-gray-500 whitespace-nowrap w-24">
-                            {ev.month} {ev.date}
-                          </p>
-                          <p className="text-sm font-semibold" style={{color:"#30170c"}}>{ev.title}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                  <br></br>
-                  <h3 className="text-xl font-bold mb-4" style={{ color: "#6d351b" }}>Check Back for Our Upcoming 2025-2026 Events!</h3>
-                </div>
-                
+          <button
+            className="btn small"
+            onClick={() => setSortDir((s) => (s === "asc" ? "desc" : "asc"))}
+            aria-pressed={sortDir === "desc"}
+            title="Toggle sort"
+          >
+            {sortDir === "asc" ? "Sort: Soonest" : "Sort: Latest"}
+          </button>
+        </div>
+      </div>
+
+      <div className="container eventsGrid">
+        {visible.length === 0 ? (
+          <div className="empty">No events match your search.</div>
+        ) : (
+          <>
+            <section className="eventsSection">
+              <h2 className="eventsSection__heading">Upcoming</h2>
+              {upcoming.length === 0 ? (
+                <div className="empty">No upcoming events.</div>
+              ) : (
+                <div className="eventsGrid__list">{upcoming.map(renderEvent)}</div>
+              )}
+            </section>
+
+            <section className="eventsSection pastSection">
+              <h2 className="eventsSection__heading">PAST</h2>
+              {past.length === 0 ? (
+                <div className="empty">No past events.</div>
+              ) : (
+                <div className="eventsGrid__list">{past.map(renderEvent)}</div>
+              )}
+            </section>
+          </>
+        )}
+      </div>
+
+      {selected && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={selected.title} onClick={() => setSelected(null)}>
+          <div className="modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button className="modal__close" aria-label="Close" onClick={() => setSelected(null)}>
+              ×
+            </button>
+
+            <div className="modal__media">{selected.image ? <img src={selected.image} alt={selected.title} /> : null}</div>
+
+            <div className="modal__content">
+              <h2>{selected.title}</h2>
+              <p className="muted">{formatDate(selected.dateISO)} {selected.time ? ` • ${selected.time}` : ""}</p>
+              {selected.location && <p className="muted">{selected.location}</p>}
+              <p>{selected.description}</p>
+
+              <div className="modal__actions">
+                {/* RSVP removed from modal as well */}
+                <button className="btn btn--outline" onClick={() => setSelected(null)}>Close</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <footer style={{ background: "rgb(246,246,247)", padding: "2.5rem 2rem 2rem", marginTop: 50 }}>
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "1.2rem" }}>
-          <img src={logoCoffee} alt="COFFEE small" style={{ height: 42, marginRight: "1rem" }} />
-          <div>
-            {socialLinks.map(({ href, icon, label }) => (
-              <a key={label} href={href} style={{ marginRight: 12, color: "#566" }} aria-label={label} target="_blank" rel="noreferrer">
-                {icon}
-              </a>
-            ))}
-          </div>
-        </div>
-        <p style={{ color: "rgba(133, 100, 39, 1)" }}>
-          Made with ❤︎ by COFFEE Developer Team, 2025: Nancy, Ananya, Sherry, Aishwari, and Kavi
-        </p>
-      </footer>
-    </div>
+      )}
+    </section>
   );
 }
-
-export default Events;

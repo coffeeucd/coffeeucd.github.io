@@ -39,77 +39,38 @@ function About() {
   return (
     <>
       {/* Back to Home button */}
-      <div className="w-full">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          {/* If using React Router, replace <a> with:
-              <Link to="/" className="..."> ... </Link>
-          */}
-          <a
-            href="/"
-            className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-white shadow-md transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            style={{ backgroundColor: "#ba7657ff" }}
-          >
-            {/* Left arrow icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            Back to Home
-          </a>
+      {/* Back to Home removed per request; refined hero and sections */}
+      <div className="eventsHero">
+        <div className="eventsHero__inner">
+          <h1 className="eventsHero__title">ABOUT US</h1>
+          <p className="eventsHero__subtitle">The <b>Club of Female & Femme Electrical Engineers (COFFEE)</b> at UC Davis promotes academics, retention, and community among women in the Electrical and Computer Engineering Department.</p>
         </div>
       </div>
 
-      {/*Text Section*/}
-      <div style={{ textAlign: "center", padding: "1rem 1rem 1rem 1rem", fontFamily: "'Outfit', sans-serif", color: "#5A3625" }}>
-        <div style={{ backgroundColor: "#5A3625", padding: "2rem 2rem 2rem 2rem" }}>
-        <h1 style={{ fontSize: "3.0rem", letterSpacing: "0.1em", fontWeight: 700, margin: 20, color: "white"}}>
-          ABOUT US
-        </h1>
-        <span style={{textAlign: "center", fontSize: "1.4rem", fontWeight: 400, color: "white" }}>
-          The <b>Club of Female & Femme Electrical Engineers (COFFEE)</b> at
-          UC Davis is an organization aimed towards promoting academics, retention,
-          and community among women in the Electrical and Computer Engineering Department.
-        </span></div>
-        <h2 style={{textAlign: "left", fontSize: "1.4rem", fontWeight: 600, marginTop: 20 }}>
-          How it all started:
-          <br />
-          <span style={{fontWeight: 400, fontSize: "1.2rem" }}>
-            The Club of Female & Femme Engineers was started by a group
-            of women in the ECE Department in 2018. We found that the
-            transition from lower-division to upper-division courses
-            was unexpectedly challenging, and we leaned on each other
-            for support. We decided to create an official organization
-            that provided assistance, support, and guidance for the
-            women in electrical and computer engineering, and thus
-            COFFEE was born.
-          </span>
-        </h2>
-        <h2 style={{textAlign: "left", fontSize: "1.4rem", fontWeight: 600, marginTop: 20 }}>
-          Fun Fact:
-          <br />
-          <span style={{fontWeight: 400, fontSize: "1.2rem" }}>
-            In creating the name one very late night in the 24 hour study room,
-              there were two options for the club name: EEW (Electrical Engineering Women)
-            and COFFEE (Club of Female & Femme Electrical Engineers).
-            Thankfully, the organization adopted the second name!
-          </span>
-        </h2>
-        <h2 style={{fontSize: "2rem", fontWeight: 600, letterSpacing: "0.1em", marginTop: 40 }}>
-          Meet our Officers
-          <br />
-        </h2>
-        <span style={{fontWeight: 400, fontSize: "1.2rem" }}>
-            Hover over each photo to learn about the officer's name, position, and major!
-          </span>
+      <div style={{maxWidth:1100,margin:'28px auto',padding:'0 16px'}}>
+        <div className="cardRow">
+        <div className="sectionCard sectionCard--card">
+          <div className="cardIcon">☕️</div>
+          <div className="cardBody">
+            <h2>How it all started</h2>
+            <p><span className="dropcap"></span>The Club of Female & Femme Engineers was started by a group of women in the ECE Department in 2018. We found that the transition from lower-division to upper-division courses was unexpectedly challenging, and we leaned on each other for support. We decided to create an official organization that provided assistance, support, and guidance for the women in electrical and computer engineering, and thus COFFEE was born.</p>
+          </div>
+        </div>
+
+        <div className="sectionCard sectionCard--card">
+          <div className="cardIcon">✨</div>
+          <div className="cardBody">
+            <h2>Fun Fact</h2>
+            <p><span className="funFact"></span> In creating the name one very late night in the 24 hour study room, there were two options for the club name: EEW (Electrical Engineering Women) and COFFEE (Club of Female & Femme Electrical Engineers). Thankfully, the organization adopted the second name.</p>
+          </div>
+        </div>
+
+        </div>
+
+        <div className="sectionCard">
+          <h2>Meet our Officers</h2>
+          <p>Hover over each photo to learn about the officer's name, position, and major!</p>
+        </div>
       </div>
       {/* Images with hover functionality */}
       <div className="flex flex-wrap justify-center gap-3">
@@ -133,19 +94,6 @@ function About() {
         ))}
       </div>
 
-      <footer style={{ background: "rgb(246,246,247)", padding: "2.5rem 2rem 2rem", marginTop: 50 }}>
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "1.2rem" }}>
-          <img src={logoCoffee} alt="COFFEE small" style={{ height: 42, marginRight: "1rem" }} />
-          <div>
-            {socialLinks.map(({ href, icon, label }) => (
-              <a key={label} href={href} style={{ marginRight: 12, color: "#566" }} aria-label={label} target="_blank" rel="noreferrer">
-                {icon}
-              </a>
-            ))}
-          </div>
-        </div>
-        <p style={{color:"rgba(133, 100, 39, 1)"}}>Made with ❤︎ by COFFEE Developer Team, 2025: Nancy, Ananya, Sherry, Aishwari, and Kavi</p>
-      </footer>
     </>
   )
 }

@@ -7,9 +7,30 @@ import img5 from "../assets/img5.jpg";
 import img6 from "../assets/img6.jpg";
 import img7 from "../assets/img7.jpeg";
 import img8 from "../assets/img8.jpeg";
+import img9 from "../assets/img9.jpg";
+import img10 from "../assets/img10.jpg";
+import img11 from "../assets/img11.jpg";
+import img12 from "../assets/img12.jpg";
+import img13 from "../assets/img13.jpg";
+import img14 from "../assets/img14.jpg";
+
 import { useState, useEffect } from "react";
 
-const originalImages = [img1, img2, img3, img4, img5, img6, img7, img8];
+const originalImages = [
+  img1,
+  img12,
+  img2,
+  img10,
+  img3,
+  img11,
+  img4,
+  img5,
+  img13,
+  img6,
+  img8,
+  img9,
+  img14,
+];
 
 /** ---- SIZING CONTROLS ----
  * MAX_WIDTH: overall width cap (e.g., "1100px", "72rem", "100%")

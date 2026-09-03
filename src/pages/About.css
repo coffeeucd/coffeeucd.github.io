@@ -4,6 +4,109 @@
   font-family: 'DM Serif Text', serif;
   font-style: normal;
   color: #3D2C2E;
+.text-center{
+  margin: 0px 50px 0px
+}
+.inter-reg {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  color: #3D2C2E;
+}
+
+.container {
+  position: relative;
+  flex: 20%;
+  padding: 10px;
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.container:hover .overlay {
+  transition: .5s ease;
+  opacity: 1;
+}
+
+.text {
+  color:  #3D2C2E;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Events-like hero for About page */
+.eventsHero{background:#3E1E04;color:#fff;padding:48px 16px;display:flex;justify-content:center;align-items:center;text-align:center;border-radius:12px}
+.eventsHero__inner{max-width:900px}
+.eventsHero__title{font-size:clamp(2rem,5vw,3rem);margin:0 0 8px;font-weight:800;letter-spacing:0.06em}
+.eventsHero__subtitle{opacity:0.95;margin:0;color:#f3e7e2}
+
+.sectionCard{background:#fff;border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(62,30,4,0.05);margin:18px 0}
+.sectionCard h2{font-size:1.25rem;margin:0 0 8px;font-weight:700;color:#432717}
+.sectionCard p{margin:0;color:#4e3a31;line-height:1.6}
+
+/* card variant with left icon */
+.sectionCard--card{display:flex;gap:18px;align-items:flex-start;padding:20px;border-radius:14px;box-shadow:0 12px 36px rgba(62,30,4,0.06)}
+.sectionCard--card .cardIcon{flex:0 0 64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#fff7f2,#f4e6df);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#7a3e26}
+.sectionCard--card .cardBody{flex:1}
+.sectionCard--card:hover{transform:translateY(-6px);transition:transform .18s ease}
+
+/* Row to place cards side-by-side */
+.cardRow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:6px 0}
+@media (max-width:900px){
+  .cardRow{grid-template-columns:1fr}
+}
+.sectionCard--card{align-items:stretch;min-height:150px}
+.sectionCard--card .cardBody{display:flex;flex-direction:column;justify-content:center}
+
+/* Footer refinement */
+.aboutFooter{background:rgb(246,246,247);padding:24px;margin-top:36px;border-radius:8px;text-align:center}
+.aboutFooter p{color:#845f43}
+
+/* playful callout for origin story */
+.callout{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(180deg,#fffaf8,#fff5f1);border-left:6px solid #ba7657;padding:18px;border-radius:8px}
+.callout .emoji{font-size:2rem;margin-top:4px}
+.callout p{margin:0;color:#5a3b2b}
+
+/* fun fact pill */
+.funFact{background:#fffefc;border-radius:999px;padding:12px 18px;color:#5a3422;display:inline-block;font-weight:700;box-shadow:0 8px 20px rgba(106,48,5,0.06);margin-top:10px}
+
+.dropcap{float:left;font-size:3.2rem;line-height:0.8;margin-right:8px;color:#6b3819;font-weight:900}
+
+/* Officers grid */
+.officersGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin:22px 12px}
+.officerCard{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.officerCard img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .28s ease,opacity .28s ease}
+.officerOverlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(62,30,4,0.0),rgba(62,30,4,0.75));color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;opacity:0;transition:opacity .25s ease}
+.officerCard:hover img{transform:scale(1.03);opacity:0.6}
+.officerCard:hover .officerOverlay{opacity:1}
+.officerName{font-weight:800}
+.officerRole{font-size:0.95rem;opacity:0.9}
+
+@media (max-width:700px){.officerCard img{height:180px}} 
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.dm-serif {
+  font-family: 'DM Serif Text', serif;
+  font-style: normal;
+  color: #3D2C2E;
 }
 .text-center{
   margin: 0px 50px 0px
@@ -57,3 +160,33 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+/* Events-like hero for About page */
+.eventsHero{background:#3E1E04;color:#fff;padding:48px 16px;display:flex;justify-content:center;align-items:center;text-align:center;border-radius:12px}
+.eventsHero__inner{max-width:900px}
+.eventsHero__title{font-size:clamp(2rem,5vw,3rem);margin:0 0 8px;font-weight:800;letter-spacing:0.06em}
+.eventsHero__subtitle{opacity:0.95;margin:0;color:#f3e7e2}
+
+/* Officers grid */
+.officersGrid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:12px}
+.officerCard{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.06);flex:0 1 calc(20% - 12px);min-width:140px}
+.officerCard img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .28s ease,opacity .28s ease}
+.officerOverlay{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(62,30,4,0.0),rgba(62,30,4,0.75));color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;opacity:0;transition:opacity .25s ease}
+.officerCard:hover img{transform:scale(1.03);opacity:0.6}
+.officerCard:hover .officerOverlay{opacity:1}
+.officerName{font-weight:800}
+.officerRole{font-size:0.95rem;opacity:0.9}
+
+@media (max-width:1100px){.officerCard{flex:0 1 calc(33.333% - 12px)}}
+@media (max-width:700px){.officerCard{flex:0 1 calc(50% - 12px)}.officerCard img{height:180px}}
+
+/* Alternative gallery style (centered overlay) */
+.galleryGrid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:12px}
+.galleryItem{position:relative;overflow:hidden;border-radius:8px;flex:0 1 calc(20% - 12px);min-width:140px}
+.galleryItem img{width:100%;height:220px;object-fit:cover;display:block;transition:opacity .3s ease,transform .28s ease}
+.galleryOverlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .32s ease}
+.galleryItem:hover img{opacity:0.36;transform:scale(1.02)}
+.galleryItem:hover .galleryOverlay{opacity:1}
+.galleryOverlayContent{color:#5A3625;font-weight:600;text-align:center;font-size:1rem;background:rgba(255,255,255,0.88);padding:10px 12px;border-radius:8px}
+@media (max-width:1100px){.galleryItem{flex:0 1 calc(33.333% - 12px)}}
+@media (max-width:700px){.galleryItem{flex:0 1 calc(50% - 12px)}.galleryItem img{height:160px}}

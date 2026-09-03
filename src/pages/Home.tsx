@@ -18,76 +18,73 @@ const pathByLabel = {
 
 const menuLinks = Object.keys(pathByLabel) as (keyof typeof pathByLabel)[];
 
+// Benefits data for "Why Join" section
+const benefits = [
+  {
+    title: "Mentorship",
+    description: "Our mentorship program pairs you with an upperclassmen to help guide you through your academic career at UC Davis",
+    icon: "🤝",
+    path: "/mentorship"
+  },
+  {
+    title: "Community",
+    description: "Build lasting friendships with like-minded students",
+    icon: "💫",
+    path: "/about"
+  },
+  {
+    title: "Events",
+    description: "Attend workshops, socials, recruitment, and networking events",
+    icon: "🎉",
+    path: "/events"
+  },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div style={{ background: "#F6F6F7", minHeight: "100vh" }}>
-      {/* Header */}
-      <header className="hdr">
-        <div className="hdr__inner">
-          <div className="hdr__brand">
-            <img src={logoCoffee} alt="COFFEE" style={{ height: 56, marginRight: 12 }} />
-          </div>
+    <>
+      {/* remove any <header className="hdr">...</header> here (App renders Header) */}
 
-          {/* Desktop nav */}
-          <nav className="hdr__nav--desktop" aria-label="Primary">
-            {menuLinks.map((label) => (
-              <Link
-                key={label}
-                to={pathByLabel[label]}
-                className="navlink"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile hamburger */}
-          <button
-            className="hamburger"
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((o) => !o)}
-          >
-            {/* Unicode burger (no icon lib) */}
-            <span className="hamburger__icon">☰</span>
-          </button>
-        </div>
-
-        {/* Mobile slide-down menu */}
-        <nav
-          className={`mobilemenu ${menuOpen ? "mobilemenu--open" : ""}`}
-          aria-label="Mobile"
-        >
-          {menuLinks.map((label) => (
-            <Link
-              key={label}
-              to={pathByLabel[label]}
-              className="mobilemenu__item"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </header>
-
-      {/* Hero */}
-      <main style={{ background: "#5a3625ff", minHeight: "50vh" }}>
-        <section className="hero">
-          <h1 className="glow hero__title">C.O.F.F.E.E.</h1>
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero__bg" />
+        <div className="hero__content">
+          <h1 className="hero__title">C.O.F.F.E.E.</h1>
           <p className="hero__subtitle">Club Of Female & Femme Electrical Engineers</p>
-          <p className="hero__subtitle">@ University of California, Davis</p>
+          <p className="hero__tagline">@ University of California, Davis</p>
 
           <div className="ctaRow">
-            <Link to="/about" className="cta cta--ghost">Who We Are</Link>
-            <Link to="/events" className="cta cta--solid">Our Events</Link>
+            <a href="/about" className="cta cta--primary">Who We Are</a>
+            <a href="/events" className="cta cta--secondary">Our Events</a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* What We Do + Carousel */}
-        <section className="whatWeDo">
+      {/* Why Join Section */}
+      <section className="whyJoin">
+        <div className="whyJoin__container">
+          <h2 className="whyJoin__title">Why Join COFFEE?</h2>
+          <p className="whyJoin__description">
+            Be part of a supportive community dedicated to advancing women and femmes in electrical and computer engineering at UC Davis
+          </p>
+          
+          <div className="benefitsGrid">
+            {benefits.map((benefit, i) => (
+              <Link key={i} to={benefit.path} className="benefitCard" style={{ textDecoration: "none", color: "inherit" }}>
+                <div className="benefitCard__icon">{benefit.icon}</div>
+                <h3 className="benefitCard__title">{benefit.title}</h3>
+                <p className="benefitCard__description">{benefit.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Do + Carousel */}
+      <section className="whatWeDo">
+        <div className="whatWeDo__container">
           <h2 className="whatWeDo__title">
             What We Do
             <br />
@@ -100,25 +97,8 @@ export default function Home() {
           <div className="carouselWrap">
             <Carousel />
           </div>
-        </section>
-      </main>
-
-      {/* Footer (unchanged markup) */}
-      <footer style={{ background: "rgb(246,246,247)", padding: "2.5rem 2rem 2rem" }}>
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "1.2rem" }}>
-          <img src={logoCoffee} alt="COFFEE small" style={{ height: 42, marginRight: "1rem" }} />
-          <div>
-            {socialLinks.map(({ href, icon, label }) => (
-              <a key={label} href={href} style={{ marginRight: 12, color: "#566" }} aria-label={label} target="_blank" rel="noreferrer">
-                {icon}
-              </a>
-            ))}
-          </div>
         </div>
-        <p style={{ color: "rgba(133, 100, 39, 1)" }}>
-          Made with ❤︎ by COFFEE Developer Team, 2025: Nancy, Ananya, Sherry, Aishwari, and Kavi
-        </p>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }

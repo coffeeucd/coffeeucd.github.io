@@ -1,0 +1,213 @@
+/* Import Mentorship.css styles or define shared hero styles */
+.eventsHero {
+  background: linear-gradient(135deg, #3E1E04 0%, #5A3625 100%);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 24px 0;
+}
+
+.eventsHero__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.eventsHero__title {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+}
+
+.eventsHero__subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* Contact Grid */
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 40px 0;
+}
+
+/* Contact Card */
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.contactCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: #ba7657;
+  transform: translateY(-2px);
+}
+
+.contactCard__icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.contactCard__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #5A3625;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.contactCard__description {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
+  text-align: center;
+  margin: 0 0 16px;
+  flex-grow: 1;
+}
+
+.contactCard__cta {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ba7657;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  transition: color 0.3s ease;
+}
+
+.contactCard:hover .contactCard__cta {
+  color: #5A3625;
+}
+
+/* Email Highlight Section */
+.emailHighlight {
+  background: linear-gradient(135deg, #FFF8F3 0%, #FFF5ED 100%);
+  border-left: 4px solid #ba7657;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(186, 118, 87, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.emailHighlight__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emailHighlight__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #5A3625;
+  margin: 0 0 12px;
+}
+
+.emailHighlight__text {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.emailHighlight__address {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ba7657;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin: 8px 0 16px;
+}
+
+.emailHighlight__address:hover {
+  background: #ba7657;
+  color: white;
+  box-shadow: 0 4px 12px rgba(186, 118, 87, 0.2);
+}
+
+.emailHighlight__footer {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .eventsHero__title {
+    font-size: 32px;
+  }
+
+  .eventsHero__subtitle {
+    font-size: 16px;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contactCard {
+    padding: 24px 20px;
+  }
+
+  .emailHighlight {
+    padding: 24px;
+    margin: 30px auto;
+  }
+
+  .emailHighlight__title {
+    font-size: 20px;
+  }
+
+  .emailHighlight__address {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .eventsHero {
+    padding: 32px 20px;
+  }
+
+  .eventsHero__title {
+    font-size: 28px;
+  }
+
+  .eventsHero__subtitle {
+    font-size: 14px;
+  }
+
+  .contactCard__icon {
+    font-size: 40px;
+  }
+
+  .contactCard__title {
+    font-size: 20px;
+  }
+
+  .emailHighlight__address {
+    font-size: 16px;
+  }
+}
