@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logoCoffee from "../assets/logo-coffee.png";
+//import logoCoffee from "../assets/logo-coffee.png";
 import Carousel from "../components/Carousel";
 import "./Home.css"; // ⬅️ add this line
 
-// socials (unchanged)
-const socialLinks = [
-  { href: "https://www.instagram.com/coffee_ucd/", icon: "Instagram[◉°]", label: "Instagram" },
-  { href: "https://linkedin.com", icon: "LinkedIn🔗", label: "LinkedIn" },
-];
 
 const pathByLabel = {
   MENTORSHIP: "/mentorship",
@@ -16,7 +11,7 @@ const pathByLabel = {
   ABOUT: "/about",
 } as const;
 
-const menuLinks = Object.keys(pathByLabel) as (keyof typeof pathByLabel)[];
+//const menuLinks = Object.keys(pathByLabel) as (keyof typeof pathByLabel)[];
 
 // Benefits data for "Why Join" section
 const benefits = [
@@ -41,7 +36,7 @@ const benefits = [
 ];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  //const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>

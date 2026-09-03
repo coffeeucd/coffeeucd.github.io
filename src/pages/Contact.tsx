@@ -39,7 +39,7 @@ function Contact() {
               rel={link.label === "Email" ? undefined : "noreferrer"}
               className="contactCard"
             >
-              <div className="contactCard__icon">{link.icon}</div>
+              <div className="contactCard__icon"></div>
               <h2 className="contactCard__title">{link.title}</h2>
               <p className="contactCard__description">{link.description}</p>
               <div className="contactCard__cta">

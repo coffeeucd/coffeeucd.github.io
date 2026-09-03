@@ -25,7 +25,7 @@ const people1 = [
 ];
 
 
-import logoCoffee from "../assets/logo-coffee.png";
+//import logoCoffee from "../assets/logo-coffee.png";
 
 
 // socials (fine)

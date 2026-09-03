@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/logo-coffee.png";
 import "../pages/Home.css"; // header styles are in Home.css
